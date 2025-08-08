@@ -1,345 +1,399 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Noel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            background: #000;
-            color: #fff;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
+      body {
+        background: #000;
+        color: #fff;
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
 
-        .hero-section {
-            text-align: center;
-            padding: 40px 0;
-        }
+      .hero-section {
+        text-align: center;
+        padding: 40px 0;
+      }
 
-        .countdown-container {
-            margin-bottom: 40px;
-        }
+      .countdown-container {
+        margin-bottom: 40px;
+      }
 
+      .countdown-title {
+        font-family: "Orbitron", monospace;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #00ffff;
+        text-shadow: 0 0 20px #00ffff;
+        margin-bottom: 30px;
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+
+      @keyframes glow {
+        from {
+          text-shadow: 0 0 20px #00ffff;
+        }
+        to {
+          text-shadow: 0 0 30px #00ffff, 0 0 40px #00ffff;
+        }
+      }
+
+      .countdown {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+      }
+
+      .countdown-item {
+        background: linear-gradient(145deg, #1a1a1a, #333);
+        border-radius: 12px;
+        padding: 15px;
+        min-width: 100px;
+        box-shadow: 0 8px 32px rgba(0, 255, 255, 0.1);
+        border: 1px solid rgba(0, 255, 255, 0.2);
+      }
+
+      .countdown-number {
+        font-family: "Orbitron", monospace;
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: #00ffff;
+        display: block;
+        text-shadow: 0 0 10px #00ffff;
+      }
+
+      .countdown-label {
+        font-size: 0.9rem;
+        color: #ccc;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: 8px;
+      }
+
+      .urgent-message {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #fff;
+        margin: 40px 0 30px;
+        line-height: 1.4;
+      }
+
+      .highlight {
+        color: #ff4444;
+        text-shadow: 0 0 10px #ff4444;
+      }
+
+      .video-section {
+        margin: 40px 0;
+        text-align: center;
+      }
+
+      .video-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        aspect-ratio: 16/9;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 255, 255, 0.2);
+        border: 2px solid rgba(0, 255, 255, 0.3);
+      }
+
+      .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .cta-section {
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      .telegram-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 15px;
+        background: linear-gradient(45deg, #0088cc, #00d4aa);
+        color: white;
+        padding: 18px 40px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0, 136, 204, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .telegram-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(0, 136, 204, 0.4);
+      }
+
+      .telegram-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .telegram-button:hover::before {
+        left: 100%;
+      }
+
+      .pointing-hand {
+        position: absolute;
+        right: -60px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2rem;
+        animation: bounce 2s infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(-50%);
+        }
+        40% {
+          transform: translateY(-60%);
+        }
+        60% {
+          transform: translateY(-55%);
+        }
+      }
+
+      .button-container {
+        position: relative;
+        display: inline-block;
+      }
+
+      @media (max-width: 768px) {
         .countdown-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #00ffff;
-            text-shadow: 0 0 20px #00ffff;
-            margin-bottom: 30px;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from { text-shadow: 0 0 20px #00ffff; }
-            to { text-shadow: 0 0 30px #00ffff, 0 0 40px #00ffff; }
+          font-size: 1.5rem;
         }
 
         .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
+          gap: 15px;
         }
 
         .countdown-item {
-            background: linear-gradient(145deg, #1a1a1a, #333);
-            border-radius: 12px;
-            padding: 15px;
-            min-width: 100px;
-            box-shadow: 0 8px 32px rgba(0, 255, 255, 0.1);
-            border: 1px solid rgba(0, 255, 255, 0.2);
+          min-width: 90px;
+          padding: 12px;
         }
 
         .countdown-number {
-            font-family: 'Orbitron', monospace;
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: #00ffff;
-            display: block;
-            text-shadow: 0 0 10px #00ffff;
-        }
-
-        .countdown-label {
-            font-size: 0.9rem;
-            color: #ccc;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 8px;
+          font-size: 1.8rem;
         }
 
         .urgent-message {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: #fff;
-            margin: 40px 0 30px;
-            line-height: 1.4;
-        }
-
-        .highlight {
-            color: #ff4444;
-            text-shadow: 0 0 10px #ff4444;
-        }
-
-        .video-section {
-            margin: 40px 0;
-            text-align: center;
-        }
-
-        .video-container {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            aspect-ratio: 16/9;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 255, 255, 0.2);
-            border: 2px solid rgba(0, 255, 255, 0.3);
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .cta-section {
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        .telegram-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            background: linear-gradient(45deg, #0088cc, #00d4aa);
-            color: white;
-            padding: 18px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 136, 204, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .telegram-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 136, 204, 0.4);
-        }
-
-        .telegram-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .telegram-button:hover::before {
-            left: 100%;
+          font-size: 1.2rem;
+          padding: 0 20px;
         }
 
         .pointing-hand {
-            position: absolute;
-            right: -60px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 2rem;
-            animation: bounce 2s infinite;
+          display: none;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .countdown {
+          gap: 10px;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(-50%); }
-            40% { transform: translateY(-60%); }
-            60% { transform: translateY(-55%); }
+        .countdown-item {
+          min-width: 80px;
+          padding: 12px;
         }
 
-        .button-container {
-            position: relative;
-            display: inline-block;
+        .countdown-number {
+          font-size: 1.5rem;
         }
 
-        @media (max-width: 768px) {
-            .countdown-title {
-                font-size: 1.5rem;
-            }
-            
-            .countdown {
-                gap: 15px;
-            }
-            
-            .countdown-item {
-                min-width: 90px;
-                padding: 12px;
-            }
-            
-            .countdown-number {
-                font-size: 1.8rem;
-            }
-            
-            .urgent-message {
-                font-size: 1.2rem;
-                padding: 0 20px;
-            }
-            
-            .pointing-hand {
-                display: none;
-            }
+        .countdown-label {
+          font-size: 0.7rem;
         }
-
-        @media (max-width: 480px) {
-            .countdown {
-                gap: 10px;
-            }
-            
-            .countdown-item {
-                min-width: 80px;
-                padding: 12px;
-            }
-            
-            .countdown-number {
-                font-size: 1.5rem;
-            }
-            
-            .countdown-label {
-                font-size: 0.7rem;
-            }
-        }
+      }
     </style>
     <!-- Meta Pixel Code -->
     <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '693719299855479');
-    fbq('track', 'PageView');
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+      fbq("init", "693719299855479");
+      fbq("track", "PageView");
     </script>
-    <!-- End Meta Pixel Code -->
-</head>
-<body>
-    <!-- Meta Pixel Code (noscript) -->
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=693719299855479&ev=PageView&noscript=1"
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=693719299855479&ev=PageView&noscript=1"
     /></noscript>
-    <!-- End Meta Pixel Code (noscript) -->
+    <!-- End Meta Pixel Code -->
+  </head>
+  <body>
     <div class="container">
-        <div class="hero-section">
-            <div class="countdown-container">
-                <h1 class="countdown-title">OPPORTUNITY ENDS IN</h1>
-                <div class="countdown" id="countdown">
-                    <div class="countdown-item">
-                        <span class="countdown-number" id="hours">00</span>
-                        <div class="countdown-label">Hours</div>
-                    </div>
-                    <div class="countdown-item">
-                        <span class="countdown-number" id="minutes">00</span>
-                        <div class="countdown-label">Minutes</div>
-                    </div>
-                    <div class="countdown-item">
-                        <span class="countdown-number" id="seconds">00</span>
-                        <div class="countdown-label">Seconds</div>
-                    </div>
-                </div>
+      <div class="hero-section">
+        <div class="countdown-container">
+          <h1 class="countdown-title">OPPORTUNITY ENDS IN</h1>
+          <div class="countdown" id="countdown">
+            <div class="countdown-item">
+              <span class="countdown-number" id="hours">00</span>
+              <div class="countdown-label">Hours</div>
             </div>
-
-            <p class="urgent-message">
-                In Few Hours You Could <span class="highlight">Lose</span> This Opportunity
-            </p>
-
-            <div class="video-section">
-                <div class="video-container">
-                    <iframe src="https://player.vimeo.com/video/1108201260?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1" 
-                            frameborder="0" 
-                            allow="autoplay; fullscreen; picture-in-picture; clipboard-write" 
-                            title="Vimeo Video">
-                    </iframe>
-                </div>
+            <div class="countdown-item">
+              <span class="countdown-number" id="minutes">00</span>
+              <div class="countdown-label">Minutes</div>
             </div>
-
-            <div class="cta-section">
-                <div class="button-container">
-                    <div class="pointing-hand">👉</div>
-                    <a href="https://t.me/+iDsqVCQhRok4NGU0" class="telegram-button" target="_blank">
-                        👋 Join Telegram to Get Started
-                    </a>
-                </div>
+            <div class="countdown-item">
+              <span class="countdown-number" id="seconds">00</span>
+              <div class="countdown-label">Seconds</div>
             </div>
+          </div>
         </div>
+
+        <p class="urgent-message">
+          In Few Hours You Could <span class="highlight">Lose</span> This
+          Opportunity
+        </p>
+
+        <div class="video-section">
+          <div class="video-container">
+            <iframe
+              src="https://player.vimeo.com/video/1108201260?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1"
+              frameborder="0"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+              title="Vimeo Video"
+            >
+            </iframe>
+          </div>
+        </div>
+
+        <div class="cta-section">
+          <div class="button-container">
+            <div class="pointing-hand">👉</div>
+            <a
+              href="https://t.me/+iDsqVCQhRok4NGU0"
+              class="telegram-button"
+              target="_blank"
+            >
+              👋 Join Telegram to Get Started
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script>
-        // Countdown Timer
-        function startCountdown() {
-            // Set countdown to 5 hours from now
-            const countdownTime = new Date().getTime() + (5 * 60 * 60 * 1000);
+      // Countdown Timer
+      function startCountdown() {
+        // Set countdown to 5 hours from now
+        const countdownTime = new Date().getTime() + 5 * 60 * 60 * 1000;
 
-            const timer = setInterval(function() {
-                const now = new Date().getTime();
-                const distance = countdownTime - now;
+        const timer = setInterval(function () {
+          const now = new Date().getTime();
+          const distance = countdownTime - now;
 
-                if (distance < 0) {
-                    clearInterval(timer);
-                    document.getElementById("hours").innerHTML = "00";
-                    document.getElementById("minutes").innerHTML = "00";
-                    document.getElementById("seconds").innerHTML = "00";
-                    return;
-                }
+          if (distance < 0) {
+            clearInterval(timer);
+            document.getElementById("hours").innerHTML = "00";
+            document.getElementById("minutes").innerHTML = "00";
+            document.getElementById("seconds").innerHTML = "00";
+            return;
+          }
 
-                const hours = Math.floor(distance / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          const hours = Math.floor(distance / (1000 * 60 * 60));
+          const minutes = Math.floor(
+            (distance % (1000 * 60 * 60)) / (1000 * 60)
+          );
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
-                document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
-                document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
-            }, 1000);
-        }
+          document.getElementById("hours").innerHTML = hours
+            .toString()
+            .padStart(2, "0");
+          document.getElementById("minutes").innerHTML = minutes
+            .toString()
+            .padStart(2, "0");
+          document.getElementById("seconds").innerHTML = seconds
+            .toString()
+            .padStart(2, "0");
+        }, 1000);
+      }
 
-        // Start countdown when page loads
-        window.addEventListener('load', startCountdown);
+      // Start countdown when page loads
+      window.addEventListener("load", startCountdown);
 
-        // Add some interactive effects
-        document.addEventListener('DOMContentLoaded', function() {
-            const button = document.querySelector('.telegram-button');
-            
-            button.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-3px) scale(1.05)';
-            });
-            
-            button.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
+      // Add some interactive effects
+      document.addEventListener("DOMContentLoaded", function () {
+        const button = document.querySelector(".telegram-button");
+
+        button.addEventListener("mouseenter", function () {
+          this.style.transform = "translateY(-3px) scale(1.05)";
         });
+
+        button.addEventListener("mouseleave", function () {
+          this.style.transform = "translateY(0) scale(1)";
+        });
+      });
     </script>
-</body>
+  </body>
 </html>
